@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107024557319",
+    "project_id": "uasandroid-8224f",
+    "storage_bucket": "uasandroid-8224f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107024557319:android:1a7397a1dd0709c3a5d1a2",
+        "android_client_info": {
+          "package_name": "com.example.unisehat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8mAzZj6AYav3Ovs1IDphKT6t-GudQ_H0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
