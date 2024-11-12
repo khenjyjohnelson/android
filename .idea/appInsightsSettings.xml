@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.unisehat" />
-                  <option name="mobileSdkAppId" value="1:107024557319:android:1a7397a1dd0709c3a5d1a2" />
-                  <option name="projectId" value="uasandroid-8224f" />
-                  <option name="projectNumber" value="107024557319" />
+                  <option name="appId" value="com.uvers.TplApplication" />
+                  <option name="mobileSdkAppId" value="1:5205055205:android:44a514a11a69e247bf660c" />
+                  <option name="projectId" value="tplapps-4c8a0" />
+                  <option name="projectNumber" value="5205055205" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
