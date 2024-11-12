@@ -1,21 +1,41 @@
 {
   "project_info": {
-    "project_number": "107024557319",
-    "project_id": "uasandroid-8224f",
-    "storage_bucket": "uasandroid-8224f.appspot.com"
+    "project_number": "5205055205",
+    "firebase_url": "https://tplapps-4c8a0-default-rtdb.firebaseio.com",
+    "project_id": "tplapps-4c8a0",
+    "storage_bucket": "tplapps-4c8a0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:107024557319:android:1a7397a1dd0709c3a5d1a2",
+        "mobilesdk_app_id": "1:5205055205:android:b2f74067167084b1bf660c",
         "android_client_info": {
-          "package_name": "com.example.unisehat"
+          "package_name": "com.example.myapplication"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA8mAzZj6AYav3Ovs1IDphKT6t-GudQ_H0"
+          "current_key": "AIzaSyBiLiQWrJlSUOIRvFXYU6_EMwfpshcrfAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5205055205:android:44a514a11a69e247bf660c",
+        "android_client_info": {
+          "package_name": "com.uvers.TplApplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiLiQWrJlSUOIRvFXYU6_EMwfpshcrfAQ"
         }
       ],
       "services": {
