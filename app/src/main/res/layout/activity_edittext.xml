@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Edittext"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BACK"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Input Gaji"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewNama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama:"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/editTextNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewNama"
+            android:hint="Masukkan Nama"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/textViewGajiPokok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gaji Pokok:"
+            android:layout_below="@id/editTextNama"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/editTextGajiPokok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewGajiPokok"
+            android:inputType="numberDecimal"
+            android:hint="Masukkan Gaji Pokok"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/textViewTunjangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tunjangan:"
+            android:layout_below="@id/editTextGajiPokok"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/editTextTunjangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewTunjangan"
+            android:inputType="numberDecimal"
+            android:hint="Masukkan Tunjangan"
+            android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonHitung"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Hitung" />
+
+                <Button
+                    android:id="@+id/buttonReset"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Reset" />
+            </LinearLayout>
+
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buttonHitung"
+                    android:layout_marginTop="20dp"
+                    android:text="Nama:"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/textViewHasilNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buttonHitung"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buttonHitung"
+                    android:layout_marginTop="20dp"
+                    android:text="Total Gaji:"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/textViewTotalGaji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewHasilNama"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
+
+
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/terimaKasih"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewHasilNama"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
