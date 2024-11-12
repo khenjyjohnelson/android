@@ -1,100 +1,189 @@
-package com.example.unisehat
-import android.content.Context
+package com.example.temu3
+
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.unisehat.HomeActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.unisehat.R
-import com.example.unisehat.models.mahasiswa
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import java.security.MessageDigest
+import com.example.unisehat.lainnya.DosenActivity
+import com.example.unisehat.lainnya.MahasiswaActivity
+import com.example.unisehat.references.GreetingActivity
+import com.example.unisehat.references.GuessNumberActivity
+import com.example.unisehat.references.HelloWorldActivity
+import com.example.unisehat.references.PartsListActivity
+import com.example.unisehat.references.SmartHomeClientActivity
+import com.example.unisehat.temu3.HitungUmurActivity
+import com.example.unisehat.temu3.KebunBinatangActivity
+import com.example.unisehat.temu3.SquadSoccerActivity
+import com.example.unisehat.temu4.HitungEmasActivity
+import com.example.unisehat.temu4.HitungNilaiActivity
+import com.example.unisehat.temu5.AlertDialogActivity
+import com.example.unisehat.temu5.ToastDemoActivity
+import com.example.unisehat.temu5.WebViewActivity
+
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val selectedMenuItem = item?.itemId
+        if (selectedMenuItem == R.id.action_send_command) {
+            // Show toast
+            Toast.makeText(this, "Send command clicked", Toast.LENGTH_SHORT).show()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
-        database = Firebase.database.reference
-
-        val loginButton = findViewById<Button>(R.id.buttonlogin)
-        val nimEditText = findViewById<EditText>(R.id.editNim)
-        val passwordEditText = findViewById<EditText>(R.id.editPassword)
-
-        loginButton.setOnClickListener {
-            val nim = nimEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            // Cek apakah NIM dan password sudah diisi
-            if (nim.isNotEmpty() && password.isNotEmpty()) {
-                val hashPw = hashPassword(password)
-                loginUser(nim, hashPw)
-            } else {
-                // Jika NIM atau password kosong, tampilkan pesan kesalahan
-                // Anda dapat menyesuaikan pesan kesalahan sesuai dengan kebutuhan Anda
-                Toast.makeText(this, "Harap lengkapi NIM dan password", Toast.LENGTH_SHORT).show()
-            }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
-    }
-    private fun hashPassword(password: String): String {
-        val messageDigest = MessageDigest.getInstance("SHA-256")
-        messageDigest.update(password.toByteArray())
-        val hashedBytes = messageDigest.digest()
-        val hashedString = StringBuilder()
-        for (byte in hashedBytes) {
-            hashedString.append("%02x".format(byte.toInt() and 0xff))
+
+        // Pertemuan 3 buttons
+        val kebunBinatangButton = findViewById<Button>(R.id.kebun_binatang)
+        kebunBinatangButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                KebunBinatangActivity::class.java
+            )
+            startActivity(intent)
         }
-        return hashedString.toString()
-    }
+        val squadSoccerButton = findViewById<Button>(R.id.squad_soccer)
+        squadSoccerButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                SquadSoccerActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val hitungUmurButton = findViewById<Button>(R.id.hitung_umur)
+        hitungUmurButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                HitungUmurActivity::class.java
+            )
+            startActivity(intent)
+        }
 
-    private fun loginUser(nim: String, password: String) {
-        // Dapatkan referensi ke daftar pengguna di Firebase Realtime Database
-        val usersRef = database.child("mahasiswa")
+        // Pertemuan 4 buttons
+        val hitungNilaiButton = findViewById<Button>(R.id.hitung_nilai)
+        hitungNilaiButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                HitungNilaiActivity::class.java
+            )
+            startActivity(intent)
+        }
 
-        // Cari pengguna berdasarkan NIM
-        usersRef.orderByChild("nim").equalTo(nim).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Pengguna dengan NIM yang cocok ditemukan
-                    for (userSnapshot in dataSnapshot.children) {
-                        val dbpass = userSnapshot.child("password").getValue(String::class.java)
-                        val userId = userSnapshot.child("userId").getValue(String::class.java)
-                        if (dbpass == password) {
-                            // Simpan data pengguna ke SharedPreferences
-                            val sharedPref = getSharedPreferences("userSession", Context.MODE_PRIVATE)
-                            with(sharedPref.edit()) {
-                                putString("userId", userId)
-                                putString("userNim", nim)
-                                apply() // Simpan perubahan
-                            }
+        val hitungEmasButton = findViewById<Button>(R.id.hitung_emas)
+        hitungEmasButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                HitungEmasActivity::class.java
+            )
+            startActivity(intent)
+        }
 
-                            // Beralih ke HomeActivity
-                            val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                            return
-                        } else {
-                            Toast.makeText(this@MainActivity, "Password salah", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                } else {
-                    // Pengguna dengan NIM yang diberikan tidak ditemukan
-                    Toast.makeText(this@MainActivity, "Pengguna tidak ditemukan", Toast.LENGTH_SHORT).show()
-                }
-            }
+        // Pertemuan 5 buttons
+        val webViewTPLButton = findViewById<Button>(R.id.webview_tpl)
+        webViewTPLButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                WebViewActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val toastDemoButton = findViewById<Button>(R.id.toast_demo)
+        toastDemoButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                ToastDemoActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val alertDialogButton = findViewById<Button>(R.id.alert_dialog)
+        alertDialogButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                AlertDialogActivity::class.java
+            )
+            startActivity(intent)
+        }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Error handling jika ada kesalahan saat mengambil data dari database
-                Toast.makeText(this@MainActivity, "Gagal mengambil data pengguna", Toast.LENGTH_SHORT).show()
-            }
-        })
+        // Lainnya buttons
+        val dosenButton = findViewById<Button>(R.id.dosen)
+        dosenButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                DosenActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val mahasiswaButton = findViewById<Button>(R.id.mahasiswa)
+        mahasiswaButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                MahasiswaActivity::class.java
+            )
+            startActivity(intent)
+        }
+
+        // References buttons
+        val helloWorldButton = findViewById<Button>(R.id.hello_world)
+        helloWorldButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                HelloWorldActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val guessNumberButton = findViewById<Button>(R.id.guess_number)
+        guessNumberButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                GuessNumberActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val greetingAppButton = findViewById<Button>(R.id.greeting_app)
+        greetingAppButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                GreetingActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val smartHomeClientButton = findViewById<Button>(R.id.smart_home_client)
+        smartHomeClientButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                SmartHomeClientActivity::class.java
+            )
+            startActivity(intent)
+        }
+        val partsListButton = findViewById<Button>(R.id.parts_list)
+        partsListButton.setOnClickListener {
+            val intent = Intent(
+                this@MainActivity,
+                PartsListActivity::class.java
+            )
+            startActivity(intent)
+        }
     }
 }

@@ -1,20 +1,10 @@
 <resources>
-    <string name="app_name">UNISEHAT</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="list_of_peraturan_html">
-    <![CDATA[
-        1. Dilarang mengganti ataupun membuka baju di lapangan.
-        2. Dilarang membawa makanan non-vegetarian, minuman beralkohol dan merokok.
-        3. Dilarang membuang sampah sembarangan, pastikan lapangan yang dipakai tetap bersih.
-        4. Mengisi absen setiap memasuki dan keluar dari lapangan.
-        5. Usahakan datang tepat waktu, keterlambatan menjadi konsekuensi pribadi.
-        6. Dilarang untuk membawa teman yang tidak terdaftar sebagai peserta kegiatan UNISehat.
-        7. Jangan membuat keributan dan tetap patuhi seluruh aturan yang dibuat oleh pengurus kegiatan UNISehat.
-        8. Peralatan kegiatan seperti bet tenis meja dan raket bawa masing-masing.
-        9. Menunjukkan KTM kepada pengurus HIMAKOM yang sedang menjaga lapangan.
-        10.Memarkirkan kendaraan di area parkir gedung UVERS (untuk menghindari kejadian yang tidak diinginkan)
-    ]]>
-</string>
-
+    <string name="app_name">temu3</string>
+    <string name="reminder">Reminder name</string>
+    <string name="done">Done</string>
+    <string name="dialog_message"> Welcome to Alert Dialog</string>
+    <string name="dialog_title">Javatpoint Alert Dialog</string>
+    <string name="welcome_text">Selamat Datang</string>
+    <string name="hello_text">Selamat Kembali</string>
+    <string name="send">Send</string>
 </resources>

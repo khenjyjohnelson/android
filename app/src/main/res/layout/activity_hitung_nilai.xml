@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".temu4.HitungNilaiActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hitung Nilai Ujian"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="175dp"
+            tools:layout_editor_absoluteY="97dp" />
+
+        <EditText
+            android:id="@+id/editNamaMahasiswa"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Nama Mahasiswa"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editNilaiTugas"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Nilai Tugas"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editNilaiUTS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/tombol3"
+            android:ems="10"
+            android:hint="Nilai UTS"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editNilaiUAS"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Nilai UAS"
+            android:inputType="text" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp">
+
+            <Button
+                android:id="@+id/dsn"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:text="Perhitungan Nilai" />
+
+            <Button
+                android:id="@+id/mhs"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="220dp"
+                android:text="Kembali" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/editNama"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Nama"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTotal"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Total"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editNilaiHuruf"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Nilai Huruf"
+            android:inputType="text" />
+    </LinearLayout>
+</ScrollView>

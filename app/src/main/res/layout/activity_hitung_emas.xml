@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundimage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:text="Perhitungan Jasa"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+
+        <EditText
+            android:id="@+id/HargaEmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:hint="Harga Emas / gram"
+            android:textColorHint="@color/customGrey"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/NilaiKarat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:hint="Nilai Karat Emas"
+            android:inputType="number"
+            android:textColorHint="@color/customGrey"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <EditText
+            android:textColor="@color/black"
+            android:id="@+id/JumlahEmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:hint="Jumlah Emas / gram"
+            android:inputType="number"
+            android:textColorHint="@color/customGrey"
+            android:textSize="20sp"/>
+        <EditText
+            android:textColor="@color/black"
+            android:id="@+id/UpahPengrajin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:hint="Biaya / Upah pengrajin"
+            android:textColorHint="@color/customGrey"
+            android:inputType="number"
+            android:textSize="20sp"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/BtnHitung"
+                android:background="@drawable/custombtn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:text="Hitung" />
+
+            <Button
+                android:id="@+id/BtnReset"
+                android:background="@drawable/custombtn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:text="Reset" />
+        </LinearLayout>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/TextHarga"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Harga"/>
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/TextJumlahEmas"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Jumlah Emas"/>
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/TextTotal"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Total"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
