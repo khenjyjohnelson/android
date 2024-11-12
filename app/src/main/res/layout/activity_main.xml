@@ -1,68 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/topPanel"
+    <!-- Input Section -->
+    <RelativeLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/cornerradius"
-        android:orientation="horizontal">
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/topPanel">
-
+        <!-- Input Header -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="LOGIN"
-            android:textSize="25dp"
-            android:layout_marginBottom="40dp"
-            android:textStyle="bold" />
-
-        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NIM :"/>
-        <EditText
-            android:id="@+id/editNim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"/>
+            android:layout_centerHorizontal="true"
+            android:text="Input Data"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#626CB3"
+            android:textSize="24sp" />
 
+        <!-- ID Kontak Input -->
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password :"/>
+            android:layout_below="@id/textView"
+            android:text="Id Kontak"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#626CB3" />
+
         <EditText
-            android:id="@+id/editPassword"
+            android:id="@+id/txtNim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"/>
+            android:layout_below="@id/textView2" />
+
+        <!-- Nama Input -->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNim"
+            android:text="Nama"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#626CB3" />
+
+        <EditText
+            android:id="@+id/txtNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView3" />
+
+        <!-- Alamat Input -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNama"
+            android:text="Alamat"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#626CB3" />
+
+        <EditText
+            android:id="@+id/txtAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView4" />
+
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtAlamat"
+            android:layout_alignParentStart="true"
+            android:text="Simpan"
+            android:textColorHint="#8BC34A" />
 
         <Button
-            android:id="@+id/buttonlogin"
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/btnSimpan"
+            android:layout_toEndOf="@id/btnSimpan"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/btnHapus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/btnSimpan"
+            android:layout_toEndOf="@id/btnEdit"
+            android:text="Hapus" />
+
+    </RelativeLayout>
+
+    <!-- Data Display Section -->
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true">
+
+        <!-- Data Header -->
+        <TextView
+            android:id="@+id/txtDataHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Data Mahasiswa"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <!-- Data Display TextView -->
+        <TextView
+            android:id="@+id/txtDataMhs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:backgroundTint="#4CAF50"/>
-    </LinearLayout>
+            android:layout_below="@id/txtDataHeader"
+            android:text="Data Mahasiswa" />
 
+    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

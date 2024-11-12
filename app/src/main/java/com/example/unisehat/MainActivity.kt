@@ -1,100 +1,105 @@
 package com.example.unisehat
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
+
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.unisehat.HomeActivity
-import com.example.unisehat.R
-import com.example.unisehat.models.mahasiswa
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import java.security.MessageDigest
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var database: DatabaseReference
+    private var myDB: SQLiteDatabase? = null
+    private val tableName = "Mahasiswa"
+    private var data = ""
+    private lateinit var dtMhs: TextView
+    private lateinit var bSimpan: Button
+    private lateinit var bEdit: Button
+    private lateinit var bHapus: Button
+    private lateinit var tNim: EditText
+    private lateinit var tNama: EditText
+    private lateinit var tAlamat: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = Firebase.database.reference
+        dtMhs = findViewById(R.id.txtDataMhs)
+        bSimpan = findViewById(R.id.btnSimpan)
+        bEdit = findViewById(R.id.btnEdit)
+        bHapus = findViewById(R.id.btnHapus)
+        tNim = findViewById(R.id.txtNim)
+        tNama = findViewById(R.id.txtNama)
+        tAlamat = findViewById(R.id.txtAlamat)
 
-        val loginButton = findViewById<Button>(R.id.buttonlogin)
-        val nimEditText = findViewById<EditText>(R.id.editNim)
-        val passwordEditText = findViewById<EditText>(R.id.editPassword)
+        createDB()
+        tampilData()
 
-        loginButton.setOnClickListener {
-            val nim = nimEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            // Cek apakah NIM dan password sudah diisi
-            if (nim.isNotEmpty() && password.isNotEmpty()) {
-                val hashPw = hashPassword(password)
-                loginUser(nim, hashPw)
-            } else {
-                // Jika NIM atau password kosong, tampilkan pesan kesalahan
-                // Anda dapat menyesuaikan pesan kesalahan sesuai dengan kebutuhan Anda
-                Toast.makeText(this, "Harap lengkapi NIM dan password", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-    private fun hashPassword(password: String): String {
-        val messageDigest = MessageDigest.getInstance("SHA-256")
-        messageDigest.update(password.toByteArray())
-        val hashedBytes = messageDigest.digest()
-        val hashedString = StringBuilder()
-        for (byte in hashedBytes) {
-            hashedString.append("%02x".format(byte.toInt() and 0xff))
-        }
-        return hashedString.toString()
+        bSimpan.setOnClickListener { simpan() }
+        bEdit.setOnClickListener { edit() }
+        bHapus.setOnClickListener { hapus() }
     }
 
-    private fun loginUser(nim: String, password: String) {
-        // Dapatkan referensi ke daftar pengguna di Firebase Realtime Database
-        val usersRef = database.child("mahasiswa")
+    private fun clearField() {
+        tNim.text.clear()
+        tNama.text.clear()
+        tAlamat.text.clear()
+    }
 
-        // Cari pengguna berdasarkan NIM
-        usersRef.orderByChild("nim").equalTo(nim).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Pengguna dengan NIM yang cocok ditemukan
-                    for (userSnapshot in dataSnapshot.children) {
-                        val dbpass = userSnapshot.child("password").getValue(String::class.java)
-                        val userId = userSnapshot.child("userId").getValue(String::class.java)
-                        if (dbpass == password) {
-                            // Simpan data pengguna ke SharedPreferences
-                            val sharedPref = getSharedPreferences("userSession", Context.MODE_PRIVATE)
-                            with(sharedPref.edit()) {
-                                putString("userId", userId)
-                                putString("userNim", nim)
-                                apply() // Simpan perubahan
-                            }
+    private fun createDB() {
+        try {
+            myDB = this.openOrCreateDatabase("DBMHS", MODE_PRIVATE, null)
+            myDB?.execSQL("CREATE TABLE IF NOT EXISTS $tableName(NIM VARCHAR PRIMARY KEY, NAMA VARCHAR, ALAMAT VARCHAR);")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
-                            // Beralih ke HomeActivity
-                            val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                            return
-                        } else {
-                            Toast.makeText(this@MainActivity, "Password salah", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                } else {
-                    // Pengguna dengan NIM yang diberikan tidak ditemukan
-                    Toast.makeText(this@MainActivity, "Pengguna tidak ditemukan", Toast.LENGTH_SHORT).show()
+    private fun tampilData() {
+        try {
+            data = ""
+            clearField()
+            myDB?.rawQuery("SELECT * FROM $tableName", null)?.use { c ->
+                val col1 = c.getColumnIndex("NIM")
+                val col2 = c.getColumnIndex("NAMA")
+                val col3 = c.getColumnIndex("ALAMAT")
+                while (c.moveToNext()) {
+                    val nimMhs = c.getString(col1)
+                    val nmMhs = c.getString(col2)
+                    val almtMhs = c.getString(col3)
+                    data += "$nimMhs | $nmMhs | $almtMhs\n"
                 }
             }
+            dtMhs.text = data
+        } catch (e: Exception) {
+            e.printStackTrace()
+            dtMhs.text = data
+        }
+    }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Error handling jika ada kesalahan saat mengambil data dari database
-                Toast.makeText(this@MainActivity, "Gagal mengambil data pengguna", Toast.LENGTH_SHORT).show()
-            }
-        })
+    private fun simpan() {
+        try {
+            myDB?.execSQL("INSERT INTO $tableName VALUES('${tNim.text}', '${tNama.text}', '${tAlamat.text}');")
+            tampilData()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun edit() {
+        try {
+            myDB?.execSQL("UPDATE $tableName SET NAMA = '${tNama.text}', ALAMAT = '${tAlamat.text}' WHERE NIM = '${tNim.text}';")
+            tampilData()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun hapus() {
+        try {
+            myDB?.execSQL("DELETE FROM $tableName WHERE NIM = '${tNim.text}';")
+            tampilData()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
