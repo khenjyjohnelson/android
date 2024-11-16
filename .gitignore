@@ -1,15 +1,64 @@
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (SDK location, etc.)
+local.properties
+
+# User-specific files
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
+.DS_Store
+Thumbs.db
+
+# Android Studio captures
+captures/
+
+# Built application files
+*.apk
+*.ap_
+
+# Crashlytics/NDK output
+crashlytics/
+ndk-out/
+obj/
+
+# Keystore files
+*.keystore
+
+# Proguard folder generated at build time
+proguard/
+
+# External build files
+.externalNativeBuild/
+.cxx/
+
+# IntelliJ IDEA / Android Studio specific
+/.idea/*
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+!.idea/misc.xml
+
+# Ignored `.idea` files
+/.idea/caches/
+/.idea/libraries/
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+
+# Miscellaneous files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignore generated files from Kotlin annotation processors
+/build/generated/
+
+# Ignore KAPT generated files
+/kapt/
+
+# JetBrains specific
+.idea/
+.vscode/
