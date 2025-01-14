@@ -1,3 +1,25 @@
+# ⚠️ Project Obsolete ⚠️
+
+This project is no longer maintained and has been marked as **obsolete**. 
+
+## 🚨 Important Notice
+
+- Development on this project has **ceased**, and no further updates, bug fixes, or support will be provided.  
+- The project may no longer function as intended due to outdated dependencies, unsupported libraries, or changes in external systems.  
+- **Use at your own risk**: It is highly recommended to explore alternative solutions or updated projects that address similar needs.
+
+## 📜 Reason for Obsolescence
+
+[Provide a brief explanation here, e.g., "This project has been replaced by [new project link]" or "The technology stack is no longer supported."]
+
+## 🛠️ Alternatives
+
+- [Alternative Project 1](#)
+- [Alternative Project 2](#)
+
+Thank you for your interest in this project, and we encourage you to explore modern and supported alternatives.
+
+
 # omnitags-android
  This is the place where I experiment with omnitags and it's implementation in android. The purpose of this project is to be able to make framework implementation easier than just project copy and paste which takes a lot of time to do. I want just to do it with branches.
 
